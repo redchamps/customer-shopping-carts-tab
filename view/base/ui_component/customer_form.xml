@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <htmlContent name="cart_content">
+        <block acl="Magento_Cart::manage" class="RedChamps\CustomerCarts\Block\Adminhtml\ShoppingCartsTab" name="cart"/>
+    </htmlContent>
+</form>
