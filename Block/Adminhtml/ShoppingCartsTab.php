@@ -2,9 +2,8 @@
 namespace RedChamps\CustomerCarts\Block\Adminhtml;
 
 use Magento\Backend\Block\Template\Context;
-use Magento\Customer\Controller\RegistryConstants;
-use Magento\Framework\Registry;
 use Magento\Ui\Component\Layout\Tabs\TabWrapper;
+use RedChamps\CustomerCarts\Model\CustomerIdProvider;
 
 /**
  * Class ShoppingCartsTab
@@ -14,11 +13,11 @@ use Magento\Ui\Component\Layout\Tabs\TabWrapper;
 class ShoppingCartsTab extends TabWrapper
 {
     /**
-     * Core registry
+     * @var bool
      *
-     * @var Registry
+     * @var CustomerIdProvider
      */
-    private $coreRegistry;
+    private $customerIdProvider;
 
     /**
      * @var bool
@@ -29,12 +28,12 @@ class ShoppingCartsTab extends TabWrapper
      * Constructor
      *
      * @param Context $context
-     * @param Registry $registry
+     * @param CustomerIdProvider $customerIdProvider
      * @param array $data
      */
-    public function __construct(Context $context, Registry $registry, array $data = [])
+    public function __construct(Context $context, CustomerIdProvider $customerIdProvider, array $data = [])
     {
-        $this->coreRegistry = $registry;
+        $this->customerIdProvider = $customerIdProvider;
         parent::__construct($context, $data);
     }
 
@@ -43,7 +42,7 @@ class ShoppingCartsTab extends TabWrapper
      */
     public function canShowTab()
     {
-        return $this->coreRegistry->registry(RegistryConstants::CURRENT_CUSTOMER_ID);
+        return $this->customerIdProvider->getCustomerId();
     }
 
     /**
